@@ -1,2 +1,2 @@
-# fastapi-demo
+# FastAPI Demo
 Simple FastAPI demo
