@@ -2,8 +2,8 @@ import csv
 from models import Track, TrackMood
 
 
-def fetch_dataset() -> list[Track]:
-    with open("./data/spotify_most_streamed_songs.csv") as f:
+def read_dataset() -> list[Track]:
+    with open("./data/spotify_most_streamed_songs.csv", encoding="utf-8") as f:
         raw_data = [line for line in csv.reader(f)]
     data = []
 

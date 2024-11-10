@@ -2,10 +2,10 @@ from typing import Annotated
 from datetime import datetime
 from fastapi import FastAPI, Path, Query
 
-from data.spotify import fetch_dataset
-from models.models import Track
+from data.spotify import read_dataset
+from models import Track
 
-tracks = fetch_dataset()
+tracks = read_dataset()
 
 app = FastAPI()
 
