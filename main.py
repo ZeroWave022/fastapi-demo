@@ -2,7 +2,7 @@ from typing import Annotated
 from datetime import datetime
 from fastapi import FastAPI, Path, Query
 
-from data.spotify import read_dataset
+from data.spotify import read_dataset, write_track
 from models import Track
 
 tracks = read_dataset()
@@ -39,3 +39,11 @@ def fetch_top(
     sorted_tracks = sorted(tracks_to_sort, key=lambda t: t.streams, reverse=True)
 
     return sorted_tracks[:items]
+
+
+@app.post("/add")
+def add_track(track: Track):
+    tracks.append(track)
+    write_track(track)
+
+    return {"status": "ok", "track": track.model_dump()}
