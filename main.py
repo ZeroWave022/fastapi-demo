@@ -1,6 +1,6 @@
-from typing import Annotated
-from datetime import datetime
 from fastapi import FastAPI, Path, Query
+from datetime import datetime
+from typing import Annotated
 
 from data.spotify import read_dataset, write_track
 from models import Track

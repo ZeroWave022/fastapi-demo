@@ -10,7 +10,8 @@ class TrackMood(BaseModel):
 
     acousticness: int = Field(default=0, title="Acousticness", ge=0, le=100)
 
-    instrumentalness: int = Field(default=0, title="Instrumentalness", ge=0, le=100)
+    instrumentalness: int = Field(
+        default=0, title="Instrumentalness", ge=0, le=100)
 
     liveness: int = Field(default=0, title="Liveness", ge=0, le=100)
 
@@ -36,7 +37,7 @@ class Track(BaseModel):
 
     cover_url: str = Field(default="", title="Cover URL")
 
-    mood: TrackMood
+    mood: TrackMood = Field(default=TrackMood(), title="Track mood")
 
     model_config = {
         "json_schema_extra": {
