@@ -10,23 +10,23 @@ tracks = read_dataset()
 app = FastAPI()
 
 
-@app.get("/")
+@app.get("/", name="Status")
 def status():
     return {"status": "ok"}
 
 
-@app.get("/tracks")
+@app.get("/tracks", name="Fetch multiple tracks")
 def fetch_tracks(from_id: int = 0, to_id: int | None = None):
     to_id = len(tracks) if to_id is None else to_id
     return tracks[from_id:to_id]
 
 
-@app.get("/track/{track_id}")
+@app.get("/track/{track_id}", name="Fetch track")
 def fetch_track(track_id: Annotated[int, Path(gt=0, lt=len(tracks))]) -> Track:
     return tracks[track_id]
 
 
-@app.get("/top")
+@app.get("/top", name="Fetch top tracks")
 def fetch_top(
     year: Annotated[int | None, Query(gt=0, le=datetime.now().year)] = None,
     items: int = 10,
@@ -41,7 +41,7 @@ def fetch_top(
     return sorted_tracks[:items]
 
 
-@app.post("/add")
+@app.post("/add", name="Add new track")
 def add_track(track: Track):
     tracks.append(track)
     write_track(track)
